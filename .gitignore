@@ -1,0 +1,7 @@
+.do_built*
+build/preview/*
+!build/preview/preview.dtx
+!build/preview/preview.ins
+!build/preview/preview.sty.do
+htdocs
+nginx
