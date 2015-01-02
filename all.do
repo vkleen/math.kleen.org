@@ -1,2 +1,2 @@
-redo-ifchange index.html about.html
+redo-ifchange index.html
 redo-ifchange htdocs

@@ -8,6 +8,6 @@ pandoc -t json $2.md | build/tex-filter.hs "$(pwd)" 2>&1 >/dev/null \
       done \
     | xargs -d '\n' redo-ifchange
 
-pandoc -f markdown -t json $2.md \
+pandoc -S -f markdown -t json $2.md \
         | build/tex-filter.hs "$(pwd)" 2>/dev/null \
-        | pandoc --template=build/template.html5 --base-header-level=3 --standalone -S --email-obfuscation=none -f json -t html5 -c $CSS >$3 2>/dev/null
+        | pandoc --template=build/template.html5 --base-header-level=3 --standalone --email-obfuscation=none -f json -t html5 -c $CSS >$3 2>/dev/null

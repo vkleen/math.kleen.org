@@ -40,12 +40,6 @@ $endfor$
 $if(title)$
 <header>
   <h1 class="title"><a href="/" title="math.kleen.org">math.kleen.org</a>: $title$</h1>
-  <nav id="top-level">
-    <ul>
-      <li><a href="/index.html" title="Index">Index</a></li>
-      <li><a href="/about.html" title="About">About</a></li>
-    </ul>
-  </nav>
 </header>
 $endif$
 $if(toc)$
