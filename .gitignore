@@ -9,4 +9,5 @@ nginx
 *.html
 index.md
 lists/*.md
+lists/*/preview
 tex/

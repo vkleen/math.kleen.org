@@ -23,8 +23,8 @@ This site is supposed to serve as a research notebook to get me to write up
 ideas and results. As such, it is woefully unpolished, unreliably and generally
 to be used at your own risk.
 
-Still, have fun! And please send me [email](mailto:vkleen+math@17220103.de) with
-suggestions, corrections, criticism or general rants if you like.
+Still, have fun! And please send email with suggestions, corrections,
+criticism or general rants to <vkleen+math@17220103.de> if you like.
 
 I have the following categories of posts:
 
@@ -32,4 +32,7 @@ EOF
 
 for x in "${LISTS[@]}"; do
     printf "* [%s](%s)\n" "$(<$x/title)" "$x.html"
+    while read -r -d $'\n'; do
+        printf "    %s" "$REPLY"
+    done < "$x/preview"
 done
