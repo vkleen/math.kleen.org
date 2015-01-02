@@ -10,4 +10,4 @@ pandoc -t json $2.md | build/tex-filter.hs "$(pwd)" 2>&1 >/dev/null \
 
 pandoc -f markdown -t json $2.md \
         | build/tex-filter.hs "$(pwd)" 2>/dev/null \
-        | pandoc --template=build/template.html5 --base-header-level=3 --standalone -S -f json -t html5 -c $CSS >$3 2>/dev/null
+        | pandoc --template=build/template.html5 --base-header-level=3 --standalone -S --email-obfuscation=none -f json -t html5 -c $CSS >$3 2>/dev/null
