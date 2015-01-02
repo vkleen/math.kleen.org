@@ -5,3 +5,8 @@ build/preview/*
 !build/preview/preview.sty.do
 htdocs
 nginx
+
+*.html
+index.md
+lists/*.md
+tex/

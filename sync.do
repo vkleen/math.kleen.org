@@ -1,2 +1,2 @@
 redo-ifchange htdocs
-echo "SYNC" >&2
+rsync -rz -e ssh --delete htdocs/ amy:/sites/math/
