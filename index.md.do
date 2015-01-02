@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 LISTS=()
 while read -r -d $'\0'; do
     LISTS+=("$REPLY")

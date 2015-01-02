@@ -18,3 +18,4 @@ EOF
 popd
 
 dvisvgm --exact --no-fonts -o $3 $TDIR/image.dvi 2>&1 | sed -e '/depth=/!d;s/^.*depth=\(.*\)$/\1/' > $(dirname $2)/vertical-align
+rm -rf $TDIR
