@@ -2,7 +2,7 @@ body {
     margin: auto;
     padding-right: 1em;
     padding-left: 1em;
-    font: normal 1.1em/1.3em monospace;
+    font: normal 1.1em monospace;
     max-width: 60em;
     text-align: justify;
 }

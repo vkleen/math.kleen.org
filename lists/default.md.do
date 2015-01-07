@@ -28,13 +28,14 @@ for n in $(seq 0 $((${#POSTS[@]}-1))); do
     printf "* [%s](%s)\n" "${POST_TITLES[$n]}" "${POSTS[$n]%.md}.html"
 done
 
+>"$2/preview"
 prev_no=3
 if [[ ${#POSTS[@]} -gt $prev_no ]]; then
-    printf "* …\n" > "$2/preview"
+    printf "* …\n" >> "$2/preview"
 else
     prev_no=${#POSTS[@]}
 fi
 
 for n in $(seq $prev_no -1 1); do
-    printf "* [%s](%s)\n" "${POST_TITLES[-$n]}" "${POSTS[-$n]%.md}.html" >"$2/preview"
+    printf "* [%s](%s)\n" "${POST_TITLES[-$n]}" "${POSTS[-$n]%.md}.html" >>"$2/preview"
 done

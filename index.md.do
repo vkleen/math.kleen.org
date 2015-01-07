@@ -33,6 +33,6 @@ EOF
 for x in "${LISTS[@]}"; do
     printf "* [%s](%s)\n" "$(<$x/title)" "$x.html"
     while read -r -d $'\n'; do
-        printf "    %s" "$REPLY"
+        printf "    %s\n" "$REPLY"
     done < "$x/preview"
 done
