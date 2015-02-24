@@ -3,12 +3,15 @@
 It's been more than a month since the last post here. Sorry about that. But I
 have now implemented a nice and fancy new feature for math.kleen.org, namely
 theorem environments:
+
 <thm>
 This could be your theorem here!
 </thm>
+
 <cor>
 Some theorems come with corollaries.
 </cor>
+
 How these work ties in quite well with describing how LaTeX formulas are
 converted to SVG for display in your browser. For example:
 $$

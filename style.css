@@ -23,7 +23,7 @@ div.theorem:before {
     font-weight: bold;
 }
 
-div.theorem div.lemma div.proposition div.definition div.corollary {
+div.theorem, div.lemma, div.proposition, div.definition, div.corollary {
     text-indent: 2em;
     margin-top: 1em;
     margin-bottom: 1em;
