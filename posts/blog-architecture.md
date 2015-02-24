@@ -1,4 +1,4 @@
-% General Architecture of this "Blogging" System
+% An Outline of the Architecture of math.kleen.org
 
 The main idea behind this system is that my site is supposed to consist of
 *posts* which are organized into *lists of posts*. This mapping is not assumed
