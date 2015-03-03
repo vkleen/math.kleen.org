@@ -7,12 +7,15 @@ import Control.Monad
 import Control.Applicative
 import qualified Data.ByteString.Char8 as BS
 import Crypto.Hash
-import System.IO
+import qualified System.IO as SIO
+import System.IO.Strict
 import System.Directory
 import System.FilePath
 import Text.Printf
 
 import qualified Data.Text
+
+import Prelude hiding (readFile)
 
 type TeX = String
 type RawHTML = String
@@ -44,7 +47,7 @@ compileToSVG basepath t s = let tex = Data.Text.unpack $ Data.Text.strip $ Data.
                                     (do writeFile expr_path $ (display t) ++ tex
                                         writeFile align_path "0")
                                   alignment <- head.lines <$> readFile align_path
-                                  hPutStrLn stderr path
+                                  SIO.hPutStrLn SIO.stderr path
                                   return $ printf "<object data=\"/%s\" type=\"image/svg+xml\" style=\"vertical-align:-%s\">%s</object>" svg_web_path alignment tex
 
 texify :: [String] -> Inline -> IO Inline

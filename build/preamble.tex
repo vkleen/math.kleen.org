@@ -4,6 +4,8 @@
 \usepackage{amsmath}
 \usepackage{etoolbox}
 \usepackage{xspace}
+\usepackage{mathrsfs}
+\usepackage{xifthen}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.markings,chains,calc,matrix}
@@ -38,6 +40,8 @@
 \DeclareMathOperator{\thom}{\textnormal{Th}}
 \DeclareMathOperator{\Bl}{\textnormal{Bl}}
 \DeclareMathOperator{\Stab}{\textnormal{Stab}}
+\DeclareMathOperator{\Grp}{\textnormal{\textsf{Grp}}}
+\DeclareMathOperator{\Set}{\textnormal{\textsf{Set}}}
 
 \newcommand*{\alg}[1]{\ensuremath{\overline{#1}}\xspace}
 \newcommand*{\sep}[1]{\ensuremath{#1^{\textnormal{sep}}}\xspace}
@@ -214,7 +218,7 @@
 \newcommand*{\Alg}{\operatorname{\textnormal{\textsf{Alg}}}}
 \newcommand*{\Disc}{\operatorname{\textnormal{\textsf{Disc}}}}
 \newcommand*{\mfd}{\operatorname{\textnormal{\textsf{Mfd}}}}
-\newcommand*{\sm}[1][k]{\mathop{\textnormal{\textsf{Sm}}/k}}
+\newcommand*{\sm}[1][k]{\mathop{\textnormal{\textsf{Sm}}/#1}}
 \newcommand*{\Simp}{\mathbf{\Delta}}
 \newcommand*{\sset}{\operatorname{\textnormal{\textsf{sSet}}}}
 \newcommand*{\ssetQ}{\operatorname{\textnormal{\textsf{sSet}}_{\textnormal{\textsf{Q}}}}}
@@ -224,6 +228,7 @@
 \newcommand*{\Fin}{\operatorname{\textnormal{\textsf{Fin}}_{*}}}
 \newcommand*{\tang}[1]{\textnormal{T}\mkern-2mu_{#1}}
 \newcommand*{\dual}[1]{\textnormal{D}#1}
+\newcommand*{\sch}[1][k]{\mathop{\textnormal{\textsf{Sch}}/#1}}
 
 \def\<#1>{\left\langle #1 \right\rangle}
 
