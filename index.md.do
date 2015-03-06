@@ -24,7 +24,7 @@ ideas and results. As such, it is woefully unpolished, unreliable and generally
 to be used at your own risk.
 
 Still, have fun! And please send email with suggestions, corrections,
-criticism or general rants to <vkleen+math@17220103.de> if you like.
+criticism or general rants to <kleen@usc.edu> if you like.
 
 I have the following categories of posts:
 
