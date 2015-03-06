@@ -94,7 +94,7 @@ and transitive, so in $\ca C/U$ we have the isomorphism
 $$(G\times U)\times_U (X\times U) \iso (X\times U)
 \times_U (X\times U)$$
 and $(G\times U)\times_U(X\times U) = (G\times X)\times U$ and $(X\times
-U)\times_U (X\times U)$ because pullback preserves products. So, $G\times X\to
+U)\times_U (X\times U) = (X\times X)\times U$ because pullback preserves products. So, $G\times X\to
 X\times X$ is a local isomorphism, hence an isomorphism.
 
 [^1]: Saunders Mac Lane, Ieke Moerdijk. Sheaves in geometry and logic. Springer, 1994. ISBN: 0-387-97710-4
