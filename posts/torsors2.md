@@ -20,3 +20,22 @@ category ${\ca C}^{\op{\Simp}}$ of simplicial objects in $\ca C$) we can
 "calculate" homsets from $X$ to $Y$ in the homotopy category by taking a
 cofibrant replacement $X'$ of $X$ and a fibrant replacement $Y'$ of $Y$ and
 taking honest homotopy classes of maps from $X'$ to $Y'$ in $\ca M$.
+
+However, computing homsets like that tends to be quite difficult because,
+typically, cofibrant and fibrant replacement are hard to write down explicitly
+(at least in a form that one can work with). Jardine came up with the following
+work--around.
+
+<defn>
+Let $\ca M$ be a category with weak equivalences and let $X$ and $Y$ be objects
+in $\ca M$. Define a category $\coc(X,Y)$ of *cocycles* from $X$ to $Y$ whose
+objects are diagrams
+$$
+\begin{tikzcd}[column sep=2ex, row sep=1ex]
+& Z \arrow[ld, "\sim"'{sloped,pos=-.1}] \arrow[rd] & \\
+X & & Y
+\end{tikzcd}
+$$
+with $Z\iso X$ a weak equivalence and whose morphisms are the obvious commuting
+diagrams.
+</defn>
