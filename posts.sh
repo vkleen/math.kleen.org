@@ -4,7 +4,7 @@ shopt -s extglob nullglob
 
 
 new_post() {
-    filename="$1"
+    filename=$(basename "$1")
     shift 1
     cat >posts/$filename <<EOF
 % $@

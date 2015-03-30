@@ -10,7 +10,8 @@ be associated to those.
 
 <defn> A *group object* in a category $\ca C$ is an object $G\in\ca C$ such that
 the associated Yoneda functor $\hom(\_,G)\colon \op{\ca C}\to\Set$ actually
-takes values in the category $\Grp$ of groups.  </defn>
+takes values in the category $\Grp$ of groups.
+</defn>
 
 A trivial kind of example would be just a group considered as an object in
 $\Set$. A more involved example would be a *group scheme* $G$ over some base
@@ -23,7 +24,8 @@ Let's now assume we have a group object $G$ in a Grothendieck topos $\ca
 C$. Then we can define torsors over $G$ as follows:
 
 <defn> A *trivial $G$--torsor* is an object $X$ with a left $G$--action which is
-isomorphic to $G$ itself with the action given by left multiplication.  </defn>
+isomorphic to $G$ itself with the action given by left multiplication.
+</defn>
 
 <defn> A *$G$--torsor* is an object $X\in\ca C$ with a left $G$--action which is
 locally isomorphic to a trivial torsor; that is, there is an epimorphism $U\to

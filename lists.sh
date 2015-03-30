@@ -44,7 +44,15 @@ add_list() {
     echo "$@" >lists/"$list"/title
 }
 
-while getopts_long ":la:" opt \
+add_to_list() {
+    local list=$(basename "$1")
+    local post=$(basename "$2")
+    last_link=$(find ./lists/"$list" -regex '.*/[0-9]*$' -printf '%f\n' | sort | tail -n1)
+    new_link=$(printf '%03d\n' $(($last_link + 1)))
+    ln -s ../../posts/"$post" ./lists/"$list"/"$new_link"
+}
+
+while getopts_long ":ln:a:" opt \
                    posts required_argument \
                    "" "$@"
 do
@@ -52,9 +60,13 @@ do
         l)
             print_lists
             exit 0;;
-        a)
+        n)
             shift "$(($OPTLIND - 1))"
             add_list "$OPTLARG" "$@"
+            exit 0;;
+        a)
+            shift "$(($OPTLIND - 1))"
+            add_to_list "$OPTLARG" "$@"
             exit 0;;
         posts)
             print_posts "$OPTLARG"
