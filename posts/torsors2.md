@@ -159,7 +159,7 @@ which is inverse to the map in the lemma.
 
 Using these two lemmas the theorem about computing homsets is easy to prove. Let
 $X$ and $Y$ be any two objects in $\ca M$ and let $X'$ be a cofibrant
-replacement of $X$ and $Y'$ a cofibrant replacement of $Y$. Then we have a
+replacement of $X$ and $Y'$ a fibrant replacement of $Y$. Then we have a
 commutative diagram
 $$
 \begin{tikzcd}
