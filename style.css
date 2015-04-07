@@ -18,7 +18,7 @@ body {
     display: inline;
 }
 
-div.theorem, div.lemma, div.proposition, div.definition, div.corollary {
+div.theorem, div.lemma, div.proposition, div.definition, div.corollary, div.proof {
     margin-left: 2em;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -47,6 +47,19 @@ div.definition > p:first-child:before {
 div.corollary > p:first-child:before {
     content: "Corollary. ";
     font-weight: bold;
+}
+
+div.proof > p:first-child:before {
+    content: "Proof. ";
+    font-style: italic;
+}
+
+div.proof > p:last-child:after {
+    content: " ∎";
+}
+
+div.theorem + div.proof {
+    margin-top: -1em;
 }
 
 a {
