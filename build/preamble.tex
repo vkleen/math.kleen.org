@@ -59,6 +59,13 @@
 \newcommand*{\objl}[1]{\textnormal{{\(#1\)}--\textsf{Obj}}}
 \newcommand*{\objr}[1]{\textnormal{\textsf{Obj}--{\(#1\)}}}
 
+\makeatletter
+\newcommand*{\@old@slash}{}\let\@old@slash\slash
+\def\slash{\relax\ifmmode\delimiter"502F30E\mathopen{}\else\@old@slash\fi}
+\makeatother
+\def\backslash{\delimiter"526E30F\mathopen{}}
+\newcommand*{\tdiv}[2]{(#1\backslash #2)}
+
 \newcommand*{\cech}{\v{C}ech\xspace}
 \newcommand*{\mc}{\operatorname{\textnormal{\v{C}}}}
 

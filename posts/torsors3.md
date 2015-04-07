@@ -82,7 +82,31 @@ More generally, if $G$ acts on itself via automorphisms, then the twist
 $P\times^G G$ with respect to this action becomes a new group object. Sometimes,
 this is called a *form* of $G$. This construction let's us refine the process of
 twisting a little bit. It turns out that the twisted object $P\times^G X$ comes
-naturally equipped with a left group action by ${}^P G$.
+naturally equipped with a left group action by ${}^P G$. In fact, $P$ itself
+carries a natural left action by ${}^P G$. Recall that, since $P$ is a righ
+$G$--torsor, the map $P\times G\to P\times P$ given by $(p,g)\mapsto (p, pg)$ on
+generalized elements is an isomorphism. Let's denote the inverse map by
+$$
+(p, q) \mapsto (p, \tdiv{p}{q})
+$$
+on generalized elements. Then we can construct a commutative diagram
+$$
+\begin{tikzcd}
+P\times G \times P\arrow[r, "\varphi"] & P \arrow[d, equal] \\
+G\times P\times G\times P\arrow[u, shift left=.5ex]\arrow[u, shift right=.5ex]
+\arrow[r, "\psi"'] & P
+\end{tikzcd}
+$$
+were, on generalized elements, $\varphi(p,g,q) = p\cdot g \tdiv{p}{q}$ and
+$\psi(h,p,g,q) = \varphi(p,g,q)$. The commutativity follows from the following
+calculation:
+$$
+\varphi(ph^{-1}, hgh^{-1}, q) = ph^{-1}\cdot hgh^{-1} \tdiv{ph^{-1}}{q} = p\cdot g
+h^{-1} h \tdiv{p}{q} = \varphi(p,g,q).
+$$
+Hence, because colimits commute with products in toposes, we have a morphism
+${}^P G\times P\to P$ where the axioms for a left action can be checked by
+direct calculation.
 
 ## The Borel construction ##
 
