@@ -2,8 +2,6 @@
 
 # Interlude on constructions with torsors #
 
-## Twisting with torsors ##
-
 Let $P$ be a right torsor for some group object $G$. Twisting with $P$ will be a
 functor $\objl{G}\to \ca C$ from objects with a left $G$--action to
 objects in $\ca C$.
@@ -21,7 +19,19 @@ where $\act(g, p, x) = (p g^{-1}, gx)$ on generalized elements. If $X$
 additionally carries a right action by some group object $H$, then evidently the
 twist $P\times^G X$ also carries a right $H$--action; similarly, if the torsor
 $P$ carries a left action by some group object $H'$, then the twist also carries
-a left $H'$--action. The process of twisting has some exactness properties:
+a left $H'$--action.
+
+Let's introduce some notation for the action of the epimorphism $P\times X\onto
+P\times^G X$ on generalized elements. Namely, given a generalized element
+$(p,x)\colon T\to P\times X$, I will write $[p,x]$ for the composition $T\to
+P\times X\to P\times^G X$. Because $P\times X\onto P\times^G X$ is an
+epimorphism, to check some relation between generalized elements downstairs it
+will be enough to check it on generalized elements of the form
+$[p,x]$. Furthermore, if $(p,x)$ actually comes from a generalized element
+$(g,p,x)\colon T\to (G,P,X)$ via projection, then by the coequalizer property we
+find $[p,x] = [p g^{-1}, g x]$.
+
+The process of twisting has some exactness properties:
 
 <thm>
 The functor $P\times^G{-}\colon\objl{G}\to\ca C$ preserves colimits and finite products.
@@ -97,7 +107,7 @@ G\times P\times G\times P\arrow[u, shift left=.5ex]\arrow[u, shift right=.5ex]
 \arrow[r, "\psi"'] & P
 \end{tikzcd}
 $$
-were, on generalized elements, $\varphi(p,g,q) = p\cdot g \tdiv{p}{q}$ and
+where, on generalized elements, $\varphi(p,g,q) = p\cdot g \tdiv{p}{q}$ and
 $\psi(h,p,g,q) = \varphi(p,g,q)$. The commutativity follows from the following
 calculation:
 $$
@@ -108,8 +118,152 @@ Hence, because colimits commute with products in toposes, we have a morphism
 ${}^P G\times P\to P$ where the axioms for a left action can be checked by
 direct calculation.
 
-## The Borel construction ##
+<thm>
+This action makes $P$ into a left ${}^P G$--torsor.
+</thm>
+<proof>
+Take an epimorphism $U\onto *$ which trivializes $P$. Then it will be enough to
+check that there is a ${}^P G$--equivariant isomorphism $P\times U\iso {}^P
+G\times U$. Since everything in sight commutes with pullbacks, we might as well
+assume that $P$ is isomorphic to the trivial right $G$--torsor and check that
+then it is ${}^P G$--isomorphic to the trivial left ${}^P G$--torsor.
 
-## Constructing torsors from cocycles ##
+We first need to produce an isomorphism $P\iso {}^P G$ given a $G$--isomorphism
+$\varphi\colon P\iso G$. I claim that the composition
+$$
+G \to[g\mapsto(e,g)] G\times G\onto G\times^G G
+$$
+is an isomorphism. The inverse map is defined by the commutative[^1] diagram
+$$
+\begin{tikzcd}
+G\times G \arrow[r, "\conj"] & G \arrow[d, equal] \\
+G\times G\times G \arrow[u, shift left=.5ex]\arrow[u, shift right=.5ex]  \arrow[r, "\conj\circ\proj"'] & G
+\end{tikzcd}
+$$
+where $\conj$ denotes the conjugation action. Hence, we get a chain of isomorphisms[^2]
+$$
+\begin{tikzcd}
+P \arrow[r,"\varphi"] & G \arrow[r, "{g\mapsto(e,g)}"] & G\times^G G
+\arrow[r, "\varphi^{-1}_*"] & P\times^G G = {}^P G.
+\end{tikzcd}
+$$
+The last thing to check is that this isomorphism $P\iso {}^P G$ is in fact ${}^P
+G$--equivariant, that is, we need to check that the diagram
+$$
+\begin{tikzcd}
+{}^P G\times P \arrow[r, "\act"] \arrow[d] & P \arrow[d] \\
+{}^P G\times G \arrow[d] & G \arrow[d] \\
+{}^P G\times (G\times^G G) \arrow[d] & G\times^G G \arrow[d] \\
+{}^P G\times {}^P G \arrow[r, "m"'] & {}^P G
+\end{tikzcd}
+$$
+commutes. On generalized elements, the top composition gives
+$$
+[p, g], q \mapsto [\varphi^{-1}(e), \varphi(p) g \varphi(p)^{-1}\varphi(q)]
+$$
+while the bottom composition is
+$$
+[p,q], q\mapsto
+[p, g\cdot\tdiv{\varphi^{-1}(e)}{p}\varphi(q)\tdiv{p}{\varphi^{-1}(e)}] = [p, g\varphi(p)^{-1}\varphi(q)\varphi(p)]
+$$
+But this is equal to
+$$
+[\varphi^{-1}(e), \varphi(p) g\varphi(p)^{-1}\varphi(q)\varphi(p)\varphi(p)^{-1}]
+$$
+which proves the required commutativity.
+</proof>
 
-## Constructing cocycles from torsors ##
+A consequence of this theorem is that the twisting functor $P\times^G{-}$ may be
+considered as a functor $\objl{G}\to\objl{{}^P G}$. Furthermore, if $Q$ is a
+left $G$--torsor, then we can choose an epimorphism $U\onto *$ which trivializes
+both $Q$ and $P$. Then, because twisting commutes with products, we find
+$$
+(P\times^G Q)\times U\isom G\times U \times^{G\times U} G\times U\isom G\times
+U\isom {}^P G\times U
+$$
+similarly to the proof of the theorem. Hence, twisting restricts to a functor
+$$
+P\times^G{-}\colon \Tors[G]\to\Tors[{}^P G]
+$$
+from the category of left $G$ torsors to the category of left ${}^P G$
+torsors. Furthermore, if $Q$ is a left $K$--torsor and a right $H$--torsor, $P$
+a left $H$--torsor and a right $G$--torsor then there is a natural isomorphism
+$$
+Q\times^H (P\times^G{-})\isom (Q\times^H P)\times^G{-}
+$$
+which follows from the fact that colimits commute with colimits and with binary
+products in toposes.
+
+<thm>
+If $P$ is a right $G$--torsor and hence a left ${}^P G$--torsor, let $\op{P}$
+denote the right ${}^P G$--torsor with action given by $p\cdot g = g^{-1}\cdot
+p$ on generalized elements. Then  $\op{P}\times^{{}^P G} P$ is a trivial right
+$G$--torsor. Furthermore, ${}^{\op{P}}({}^P G)\isom G$ as group objects and
+along this identification $P\times^G \op{P}$ is a trivial right ${}^P
+G$--torsor. It follows that
+$$
+P\times^G{-}\colon \Tors[G]\to\Tors[{}^P G]
+$$
+is an equivalence of categories with weak inverse
+$$
+\op{P}\times^{{}^P G}{-}\colon\Tors[{}^P G]\to\Tors[G].
+$$
+</thm>
+<proof>
+Let's first produce an isomorphism ${}^{\op{P}}({}^P G)\iso G$. Let
+$\varphi\colon P\times P\times G\to G$
+be such that $\varphi(p,q,g) = \tdiv{q}{p} \cdot g \cdot \tdiv{p}{q}$ on
+generalized elements. It is straightforward, albeit tedious, to check that
+$\varphi$ descends to a group homomorphism
+$$
+\op{P}\times^{{}^P G} (P\times^G G) = {}^{\op{P}}({}^P G)\to G.
+$$
+I claim that this is an isomorphism. To verify this claim, it will be enough to
+pull back along an epimorphism $U\onto *$ which trivializes both the right
+$G$--torsor $P$ and the right ${}^P G$--torsor $\op{P}$, that is, we can assume
+that $P$ is trivial.[^3] So let $\psi\colon G\iso P$ be a $G$--equivariant
+isomorphism. We can then set $\widetilde\varphi\colon G\to {}^{\op{P}}({}^P G)$
+to be the morphism such that $\widetilde\varphi(g) = [\psi(e), [\psi(e), g]]$ on
+generalized elements. Computing the compositions $\varphi\circ\widetilde\varphi$
+and $\widetilde\varphi\circ\varphi$ on generalized elements, we find
+$$
+\varphi(\widetilde\varphi(g)) = \varphi([\psi(e), [\psi(e), g]]) = g
+$$
+and
+$$\widetilde\varphi(\varphi([p, [q, g]])) =
+[\psi(e), [\psi(e), \tdiv{q}{p}\cdot g\cdot \tdiv{p}{q}]].
+$$
+Noticing that
+$$
+[p, [q, g]] = [p_0, [p_0, \tdiv{p_0}{p}]\,
+ [p_0, \tdiv{q}{p_0}\cdot g\cdot \tdiv{p_0}{q}]\,
+ [p_0, \tdiv{p}{p_0}]]
+$$
+where $p_0 = \psi(e)$ finishes the proof of ${}^{\op{P}}({}^P G)\isom G$.
+
+Next, let's check that $\op{P}\times^{{}^P G} P$ is a trivial right
+$G$--torsor. Let $P\to P\times P\onto \op{P}\times^{{}^P G} P$ be the diagonal
+composed with the canonical projection. I claim that this map descends to the
+quotient $P/G\isom *$ which will provide a global section of $\op{P}\times^{{}^P
+G} P$. This will then imply the claim. The calculation
+$$
+[pg, pg] = [p, [p, g^{-1}]\cdot(pg)] = [p, p g g^{-1}] = [p,p]
+$$
+shows that the diagonal is $P\to \op{P}\times^{{}^P G} P$ is invariant under the
+right action of $G$ which proves the claim. The last assertion of the theorem is
+proven in a completely analogous way.
+</proof>
+
+In summary, we have found that twisting with a right torsor $P$ is an invertible
+operation up to isomorphism. This will become essential in the computation of
+the homotopy groups of $BG$ at any basepoint.
+
+[^1]: Remember that in $G\times^G G$ the $G$ on the left is the trivial right
+      torsor and the $G$ on the right is taken with the conjugation action.
+
+[^2]: Note that $\varphi^{-1}_*$ denotes the morphism induced by the
+      $G$--equivariant isomorphism $\varphi^{-1}\colon G\to P$, using the fact
+      that twisting is functorial with respect to $G$--equivariant morphisms in
+      both factors.
+
+[^3]: By the proof of the previous theorem, this also implies that $\op{P}$ is trivial.

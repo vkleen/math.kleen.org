@@ -46,6 +46,7 @@
 \DeclareMathOperator{\class}{\textnormal{B}}
 \DeclareMathOperator{\act}{\textnormal{act}}
 \DeclareMathOperator{\proj}{\textnormal{proj}}
+\DeclareMathOperator{\conj}{\textnormal{conj}}
 
 \newcommand*{\alg}[1]{\ensuremath{\overline{#1}}\xspace}
 \newcommand*{\sep}[1]{\ensuremath{#1^{\textnormal{sep}}}\xspace}
@@ -150,45 +151,64 @@
   opim/.default=0.5
 }
 
-\newcommand*\@tikzto[2]{\mathrel{\begin{tikzpicture}[baseline]%
-      \draw[to,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (1.6em,.55ex);%
+\newcommand*\@tikzto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[to,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
     \end{tikzpicture}}}
 
-\newcommand*\@tikzcto[2]{\mathrel{\begin{tikzpicture}[baseline]%
-      \draw[to,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (0.8em,.55ex);%
+\newcommand*\@tikzonto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[onto,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
     \end{tikzpicture}}}
 
-\newcommand*\@tikzonto[2]{\mathrel{\begin{tikzpicture}[baseline]%
-      \draw[onto,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (1.6em,.55ex);%
+\newcommand*\@tikzinto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[into,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
     \end{tikzpicture}}}
 
-\newcommand*\@tikzinto[2]{\mathrel{\begin{tikzpicture}[baseline]%
-      \draw[into,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (1.6em,.55ex);%
+\newcommand*\@tikzclim[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[into,clim,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
     \end{tikzpicture}}}
 
-\newcommand*\@tikzclim[2]{\mathrel{\begin{tikzpicture}[baseline]%
-      \draw[into,clim,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (1.6em,.55ex);%
+\newcommand*\@tikzopim[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[into,opim,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
     \end{tikzpicture}}}
 
-\newcommand*\@tikzopim[2]{\mathrel{\begin{tikzpicture}[baseline]%
-      \draw[into,opim,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (1.6em,.55ex);%
-    \end{tikzpicture}}}
-
-\newcommand*\@tikzmapsto[2]{\mathrel{\begin{tikzpicture}[baseline]%
-      \draw[mapsto,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (1.6em,.55ex);%
+\newcommand*\@tikzmapsto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[mapsto,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
     \end{tikzpicture}}}
 
 \newcommand*\@tikziso[4]{\mathrel{\begin{tikzpicture}[baseline]%
       \draw[to,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- node[iso,pos=0.47,inner sep=#4]{$#3\sim$} (1.6em,.55ex);%
     \end{tikzpicture}}}
 
-\newcommand*\tikzto{\mathchoice{\@tikzto{1.0}{1}}{\@tikzto{1.0}{1}}{\@tikzcto{0.8}{0.9}}{\@tikzcto{0.6}{0.75}}}
-\newcommand*\tikzcto{\mathchoice{\@tikzcto{1.0}{1}}{\@tikzcto{1.0}{1}}{\@tikzcto{0.8}{0.9}}{\@tikzcto{0.6}{0.75}}}
-\newcommand*\tikzonto{\mathchoice{\@tikzonto{1.0}{1}}{\@tikzonto{1.0}{1}}{\@tikzonto{0.8}{0.9}}{\@tikzonto{0.6}{0.75}}}
-\newcommand*\tikzinto{\mathchoice{\@tikzinto{1.0}{1}}{\@tikzinto{1.0}{1}}{\@tikzinto{0.8}{0.9}}{\@tikzinto{0.6}{0.75}}}
-\newcommand*\tikzclim{\mathchoice{\@tikzclim{1.0}{1}}{\@tikzclim{1.0}{1}}{\@tikzclim{0.8}{0.9}}{\@tikzclim{0.6}{0.75}}}
-\newcommand*\tikzopim{\mathchoice{\@tikzopim{1.0}{1}}{\@tikzopim{1.0}{1}}{\@tikzopim{0.8}{0.9}}{\@tikzopim{0.6}{0.75}}}
-\newcommand*\tikzmapsto{\mathchoice{\@tikzmapsto{1.0}{1}}{\@tikzmapsto{1.0}{1}}{\@tikzmapsto{0.8}{0.9}}{\@tikzmapsto{0.6}{0.75}}}
+\newcommand*\tikzto{\mathchoice%
+  {\@tikzto{1.0}{1}{1.6em}}%
+  {\@tikzto{1.0}{1}{1.6em}}%
+  {\@tikzto{0.8}{0.9}{0.8em}}%
+  {\@tikzto{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzonto{\mathchoice%
+  {\@tikzonto{1.0}{1}{1.6em}}%
+  {\@tikzonto{1.0}{1}{1.6em}}%
+  {\@tikzonto{0.8}{0.9}{0.8em}}%
+  {\@tikzonto{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzinto{\mathchoice%
+  {\@tikzinto{1.0}{1}{1.6em}}%
+  {\@tikzinto{1.0}{1}{1.6em}}%
+  {\@tikzinto{0.8}{0.9}{0.8em}}%
+  {\@tikzinto{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzclim{\mathchoice%
+  {\@tikzclim{1.0}{1}{1.6em}}%
+  {\@tikzclim{1.0}{1}{1.6em}}%
+  {\@tikzclim{0.8}{0.9}{0.8em}}%
+  {\@tikzclim{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzopim{\mathchoice%
+  {\@tikzopim{1.0}{1}{1.6em}}%
+  {\@tikzopim{1.0}{1}{1.6em}}%
+  {\@tikzopim{0.8}{0.9}{0.8em}}%
+  {\@tikzopim{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzmapsto{\mathchoice%
+  {\@tikzmapsto{1.0}{1}{1.6em}}%
+  {\@tikzmapsto{1.0}{1}{1.6em}}%
+  {\@tikzmapsto{0.8}{0.9}{0.8em}}%
+  {\@tikzmapsto{0.6}{0.75}{0.8em}}}
 \newcommand*\tikziso{\mathchoice{\@tikziso{1.0}{1}{\displaystyle}{0pt}}%
   {\@tikziso{1.0}{1}{\textstyle}{0pt}}%
   {\@tikziso{0.8}{0.9}{\scriptstyle}{0pt}}%
@@ -196,7 +216,6 @@
 \makeatother
 
 \renewcommand*{\to}[1][]{\ifthenelse{\isempty{#1}}{\tikzto}{\xrightarrowb{#1}}}
-\newcommand*{\cto}{\ensuremath{\tikzcto}}
 \newcommand*{\into}[1][]{\ifthenelse{\isempty{#1}}{\tikzinto}{\xrightarrowb[into]{#1}}}
 \newcommand*{\onto}[1][]{\ifthenelse{\isempty{#1}}{\tikzonto}{\xrightarrowb[onto]{#1}}}
 \newcommand*{\clim}{\tikzclim}
@@ -245,6 +264,7 @@
 \newcommand*{\dual}[1]{\textnormal{D}#1}
 \newcommand*{\sch}[1][k]{\mathop{\textnormal{\textsf{Sch}}/#1}}
 \newcommand*{\tors}[1][G]{\mathop{\textnormal{Tors}_{#1}}}
+\newcommand*{\Tors}[1][G]{\mathop{\textnormal{\textsf{Tors}}_{#1}}}
 
 \def\<#1>{\left\langle #1 \right\rangle}
 
