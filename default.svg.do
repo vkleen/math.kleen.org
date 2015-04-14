@@ -11,6 +11,7 @@ cp build/preview/preview.sty build/preview/prtightpage.def $TDIR
 
 pushd $TDIR >/dev/null
 latex -jobname=image >/dev/null <<EOF
+\documentclass[14pt,preview,border=1pt,class=extarticle]{standalone}
 \input{$PREAMBLE}
 \begin{document}
 \begin{preview}

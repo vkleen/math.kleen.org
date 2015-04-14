@@ -1,11 +1,19 @@
-\documentclass[14pt,preview,border=1pt,class=extarticle]{standalone}
+\usepackage[utf8]{inputenc}
 
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{thmtools}
 \usepackage{etoolbox}
 \usepackage{xspace}
 \usepackage{mathrsfs}
 \usepackage{xifthen}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{fancyvrb}
+
+\usepackage{datetime}
 
 \usepackage{tikz}
 \usetikzlibrary{arrows,decorations.markings,chains,calc,matrix}
@@ -13,6 +21,23 @@
 \tikzset{>=cm to}
 
 \usepackage{mathtools}
+
+\usepackage[colorlinks=false,bookmarks]{hyperref}
+\usepackage[all]{hypcap}
+
+\usepackage[protrusion=true]{microtype}
+
+\usepackage[style=alphabetic,citestyle=alphabetic,backref=false,hyperref=true,backend=biber]{biblatex}
+
+\declaretheoremstyle[spaceabove=\topsep,spacebelow=\topsep,headfont=\normalfont\scshape,notefont=\normalfont\mdseries,notebraces={(}{)},bodyfont=\normalfont,postheadspace=5pt plus 1pt minus 1pt]{scdef}
+\declaretheoremstyle[spaceabove=\topsep,spacebelow=\topsep,headfont=\normalfont\scshape,notefont=\normalfont\mdseries,notebraces={(}{)},bodyfont=\itshape,postheadspace=5pt plus 1pt minus 1pt]{scthm}
+
+\declaretheorem[style=scdef,numbered=no,   name=Definition,refname={definition,definitions},Refname={Definition,Definitions}]{definition}
+
+\declaretheorem[style=scthm,numbered=no, name=Theorem,refname={theorem,theorems},Refname={Theorem,Theorems}]{theorem}
+\declaretheorem[style=scthm,numbered=no, name=Lemma,refname={lemma,lemmas},Refname={Lemma,Lemmas}]{lemma}
+\declaretheorem[style=scthm,numbered=no, name=Corollary,refname={corollary,corollaries},Refname={Corollary,Corollaries}]{corollary}
+\declaretheorem[style=scthm,numbered=no, name=Proposition,refname={proposition,propositions},Refname={Proposition,Propositions}]{proposition}
 
 \undef\Re
 \undef\Im
@@ -293,3 +318,11 @@
 \undef\SS
 \renewcommand*{\do}[1]{\expandafter\def\csname#1#1\endcsname{\ensuremath{\mathbb{#1}}\xspace}}
 \docsvlist{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\shortdate
+\def\parsedate#1/#2/#3\endparse{%
+  \date{\formatdate{#3}{#2}{#1}}
+}
+\newcommand{\setdate}[1]{%
+  \ifthenelse{\isempty{#1}}{}{\parsedate#1\endparse}
+}
