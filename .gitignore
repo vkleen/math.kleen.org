@@ -7,6 +7,8 @@ htdocs
 nginx
 
 *.html
+posts/*.tex
+posts/*.pdf
 index.md
 lists/*.md
 lists/*/preview
