@@ -4,7 +4,7 @@ CSS=/style.css
 
 pandoc -t json $2.md | build/tex-filter.hs "$(pwd)" 2>&1 >/dev/null \
     | while read -r x; do
-          echo $x/image.svg
+        echo $x/image.svg
       done \
     | xargs -d '\n' redo-ifchange
 

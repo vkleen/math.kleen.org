@@ -1,12 +1,12 @@
 #!/usr/bin/env runhaskell
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, PackageImports #-}
 
 import Text.Pandoc.JSON
 
 import Control.Monad
 import Control.Applicative
 import qualified Data.ByteString.Char8 as BS
-import Crypto.Hash
+import "cryptohash" Crypto.Hash
 import qualified System.IO as SIO
 import System.IO.Strict
 import System.Directory
