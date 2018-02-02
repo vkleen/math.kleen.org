@@ -1,0 +1,328 @@
+\usepackage[utf8]{inputenc}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{etoolbox}
+\usepackage{xspace}
+\usepackage{mathrsfs}
+\usepackage{xifthen}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{fancyvrb}
+
+\usepackage{datetime}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,decorations.markings,chains,calc,matrix}
+\usepackage{tikz-cd}
+\tikzset{>=cm to}
+
+\usepackage{mathtools}
+
+\usepackage[colorlinks=false,bookmarks]{hyperref}
+\usepackage[all]{hypcap}
+
+\usepackage[protrusion=true]{microtype}
+
+\usepackage[style=alphabetic,citestyle=alphabetic,backref=false,hyperref=true,backend=biber]{biblatex}
+
+\declaretheoremstyle[spaceabove=\topsep,spacebelow=\topsep,headfont=\normalfont\scshape,notefont=\normalfont\mdseries,notebraces={(}{)},bodyfont=\normalfont,postheadspace=5pt plus 1pt minus 1pt]{scdef}
+\declaretheoremstyle[spaceabove=\topsep,spacebelow=\topsep,headfont=\normalfont\scshape,notefont=\normalfont\mdseries,notebraces={(}{)},bodyfont=\itshape,postheadspace=5pt plus 1pt minus 1pt]{scthm}
+
+\declaretheorem[style=scdef,numbered=no,   name=Definition,refname={definition,definitions},Refname={Definition,Definitions}]{definition}
+
+\declaretheorem[style=scthm,numbered=no, name=Theorem,refname={theorem,theorems},Refname={Theorem,Theorems}]{theorem}
+\declaretheorem[style=scthm,numbered=no, name=Lemma,refname={lemma,lemmas},Refname={Lemma,Lemmas}]{lemma}
+\declaretheorem[style=scthm,numbered=no, name=Corollary,refname={corollary,corollaries},Refname={Corollary,Corollaries}]{corollary}
+\declaretheorem[style=scthm,numbered=no, name=Proposition,refname={proposition,propositions},Refname={Proposition,Propositions}]{proposition}
+
+\undef\Re
+\undef\Im
+
+\DeclareMathOperator{\colim}{\textnormal{colim}}
+\DeclareMathOperator{\Spec}{\textnormal{Spec}}
+\DeclareMathOperator{\im}{\textnormal{im}}
+\DeclareMathOperator{\Sing}{\textnormal{Sing}}
+\DeclareMathOperator{\Map}{\textnormal{Map}}
+\DeclareMathOperator{\InnHom}{\textnormal{\textbf{Hom}}}
+\DeclareMathOperator{\Hom}{\textnormal{Hom}}
+\undef\hom
+\DeclareMathOperator{\hom}{\textnormal{hom}}
+\DeclareMathOperator{\nerve}{\textnormal{N}}
+\DeclareMathOperator{\simpnerve}{\textnormal{sN}}
+\DeclareMathOperator{\core}{\textnormal{Core}}
+\DeclareMathOperator{\id}{\textnormal{id}}
+\undef\lim
+\DeclareMathOperator{\lim}{\textnormal{lim}}
+\DeclareMathOperator{\Op}{\textnormal{op}}
+\DeclareMathOperator{\yon}{\textnormal{y}}
+\DeclareMathOperator{\HomL}{\textnormal{\textbf{Hom}}^{\textnormal{L}}}
+\DeclareMathOperator{\sk}{\textnormal{sk}}
+\DeclareMathOperator{\cosk}{\textnormal{cosk}}
+\DeclareMathOperator{\thom}{\textnormal{Th}}
+\DeclareMathOperator{\Bl}{\textnormal{Bl}}
+\DeclareMathOperator{\Stab}{\textnormal{Stab}}
+\DeclareMathOperator{\Grp}{\textnormal{\textsf{Grp}}}
+\DeclareMathOperator{\Set}{\textnormal{\textsf{Set}}}
+\DeclareMathOperator{\coc}{\textnormal{\textsf{Coc}}}
+\DeclareMathOperator{\class}{\textnormal{B}}
+\DeclareMathOperator{\act}{\textnormal{act}}
+\DeclareMathOperator{\proj}{\textnormal{proj}}
+\DeclareMathOperator{\conj}{\textnormal{conj}}
+
+\newcommand*{\alg}[1]{\ensuremath{\overline{#1}}\xspace}
+\newcommand*{\sep}[1]{\ensuremath{#1^{\textnormal{sep}}}\xspace}
+\newcommand*{\ab}[1]{\ensuremath{#1^{\textnormal{ab}}}\xspace}
+\newcommand*{\units}[1]{\ensuremath{#1^\times}\xspace}
+\newcommand*{\lapl}{\Delta}
+\newcommand*{\grad}{\nabla}
+\newcommand*{\op}[1]{\ensuremath{#1^{\textnormal{op}}}\xspace}
+\newcommand*{\codiag}[1]{\ensuremath{\nabla\mkern-3mu_{#1}}\xspace}
+\newcommand*{\diag}[1]{\ensuremath{\Delta_{#1}}\xspace}
+\newcommand*{\objl}[1]{\textnormal{{\(#1\)}--\textsf{Obj}}}
+\newcommand*{\objr}[1]{\textnormal{\textsf{Obj}--{\(#1\)}}}
+
+\makeatletter
+\newcommand*{\@old@slash}{}\let\@old@slash\slash
+\def\slash{\relax\ifmmode\delimiter"502F30E\mathopen{}\else\@old@slash\fi}
+\makeatother
+\def\backslash{\delimiter"526E30F\mathopen{}}
+\newcommand*{\tdiv}[2]{(#1\backslash #2)}
+
+\newcommand*{\cech}{\v{C}ech\xspace}
+\newcommand*{\mc}{\operatorname{\textnormal{\v{C}}}}
+
+\newcommand*{\triv}{\textnormal{triv}}
+
+\newcommand*{\normal}{\lhd}
+\newcommand*{\isom}{\cong}
+\newcommand*{\homot}{\sim}
+\newcommand*{\cequiv}{\simeq}
+
+\makeatletter
+\let\@oldsubset=\subset
+\def\@subsethelper#1#2{\mathrel{\raisebox{.5pt}{$$#1\@oldsubset$$}}\xspace}
+\DeclareRobustCommand*{\subset}{\mathpalette\@subsethelper\relax}
+
+\let\@oldotimes=\otimes
+\def\@otimeshelper#1#2{\mathrel{\raisebox{.5pt}{$$#1\@oldotimes$$}}\xspace}
+\DeclareRobustCommand*{\otimes}{\mathpalette\@otimeshelper\relax}
+\makeatother
+
+\tikzset{/tikz/commutative diagrams/arrows={thin}}
+
+\makeatletter
+\newbox\@xrat
+\renewcommand*{\xrightarrow}[2][-cm to]{%
+  \setbox\@xrat=\hbox{\ensuremath{\scriptstyle #2}}
+  \pgfmathsetlengthmacro{\@xratlen}{max(1.6em,\wd\@xrat+.6em)}
+  \pgfmathsetlengthmacro{\@xratinnersep}{.5ex-\dp\@xrat}
+  \mathrel{\tikz [#1,baseline=-.6ex]
+    \draw (0,0) -- node[auto,inner sep=\@xratinnersep] {\box\@xrat} (\@xratlen,0) ;}}
+\renewcommand*{\xleftarrow}[2][cm to-]{%
+  \setbox\@xrat=\hbox{\ensuremath{\scriptstyle #2}}
+  \pgfmathsetlengthmacro{\@xratlen}{max(1.6em,\wd\@xrat+.6em)}
+  \pgfmathsetlengthmacro{\@xratinnersep}{.5ex-\dp\@xrat}
+  \mathrel{\tikz [#1,baseline=-.6ex]
+    \draw (0,0) -- node[auto,inner sep=\@xratinnersep] {\box\@xrat} (\@xratlen,0) ;}}
+\newcommand*{\xrightarrowb}[2][-cm to]{%
+  \setbox\@xrat=\hbox{\ensuremath{\scriptstyle #2}}
+  \pgfmathsetlengthmacro{\@xratlen}{max(1.6em,\wd\@xrat+.6em)}
+  \pgfmathsetlengthmacro{\@xratinnersep}{.5ex}
+  \mathrel{\tikz [#1,baseline=-.6ex]
+    \draw (0,0) -- node[auto,inner sep=\@xratinnersep] {\box\@xrat} (\@xratlen,0) ;}}
+\newcommand*{\xleftarrowb}[2][cm to-]{%
+  \setbox\@xrat=\hbox{\ensuremath{\scriptstyle #2}}
+  \pgfmathsetlengthmacro{\@xratlen}{max(1.6em,\wd\@xrat+.6em)}
+  \pgfmathsetlengthmacro{\@xratinnersep}{.5ex}
+  \mathrel{\tikz [#1,baseline=-.6ex]
+    \draw (0,0) -- node[auto,inner sep=\@xratinnersep] {\box\@xrat} (\@xratlen,0) ;}}
+
+\pgfarrowsdeclare{my right hook}{my right hook}
+{
+\arrowsize=0.2pt
+\advance\arrowsize by .5\pgflinewidth
+\pgfarrowsleftextend{-.5\pgflinewidth}
+\pgfarrowsrightextend{3.5\arrowsize+.5\pgflinewidth}
+}
+{
+\arrowsize=0.2pt
+\advance\arrowsize by .5\pgflinewidth
+\pgfsetdash{}{0pt} % do not dash
+\pgfsetroundjoin % fix join
+\pgfsetroundcap % fix cap
+\pgfpathmoveto{\pgfpoint{0\arrowsize}{-7\arrowsize}}
+\pgfpatharc{-90}{90}{3.5\arrowsize}
+\pgfusepathqstroke
+}
+
+\tikzset{%
+  iso/.style={above,sloped,inner sep=0},
+  iso'/.style={below,sloped,inner sep=0},
+  to/.style={-cm to},
+  onto/.style={-cm double to},
+  into/.style={my right hook-cm to},
+  mapsto/.style={|-cm to},
+  clim/.style={decoration={markings,
+                           mark=at position#1 with {\draw[-] (0,-3\pgflinewidth) -- (0,3\pgflinewidth);}},
+               postaction=decorate},
+  clim/.default=0.5,
+  opim/.style={decoration={markings,
+                           mark=at position#1 with {\draw[-] circle(3\pgflinewidth);}},
+               postaction=decorate},
+  opim/.default=0.5
+}
+
+\newcommand*\@tikzto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[to,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
+    \end{tikzpicture}}}
+
+\newcommand*\@tikzonto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[onto,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
+    \end{tikzpicture}}}
+
+\newcommand*\@tikzinto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[into,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
+    \end{tikzpicture}}}
+
+\newcommand*\@tikzclim[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[into,clim,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
+    \end{tikzpicture}}}
+
+\newcommand*\@tikzopim[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[into,opim,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
+    \end{tikzpicture}}}
+
+\newcommand*\@tikzmapsto[3]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[mapsto,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- (#3,.55ex);%
+    \end{tikzpicture}}}
+
+\newcommand*\@tikziso[4]{\mathrel{\begin{tikzpicture}[baseline]%
+      \draw[to,line width={#2\pgflinewidth},scale=#1](0,.55ex) -- node[iso,pos=0.47,inner sep=#4]{$$#3\sim$$} (1.6em,.55ex);%
+    \end{tikzpicture}}}
+
+\newcommand*\tikzto{\mathchoice%
+  {\@tikzto{1.0}{1}{1.6em}}%
+  {\@tikzto{1.0}{1}{1.6em}}%
+  {\@tikzto{0.8}{0.9}{0.8em}}%
+  {\@tikzto{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzonto{\mathchoice%
+  {\@tikzonto{1.0}{1}{1.6em}}%
+  {\@tikzonto{1.0}{1}{1.6em}}%
+  {\@tikzonto{0.8}{0.9}{0.8em}}%
+  {\@tikzonto{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzinto{\mathchoice%
+  {\@tikzinto{1.0}{1}{1.6em}}%
+  {\@tikzinto{1.0}{1}{1.6em}}%
+  {\@tikzinto{0.8}{0.9}{0.8em}}%
+  {\@tikzinto{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzclim{\mathchoice%
+  {\@tikzclim{1.0}{1}{1.6em}}%
+  {\@tikzclim{1.0}{1}{1.6em}}%
+  {\@tikzclim{0.8}{0.9}{0.8em}}%
+  {\@tikzclim{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzopim{\mathchoice%
+  {\@tikzopim{1.0}{1}{1.6em}}%
+  {\@tikzopim{1.0}{1}{1.6em}}%
+  {\@tikzopim{0.8}{0.9}{0.8em}}%
+  {\@tikzopim{0.6}{0.75}{0.8em}}}
+\newcommand*\tikzmapsto{\mathchoice%
+  {\@tikzmapsto{1.0}{1}{1.6em}}%
+  {\@tikzmapsto{1.0}{1}{1.6em}}%
+  {\@tikzmapsto{0.8}{0.9}{0.8em}}%
+  {\@tikzmapsto{0.6}{0.75}{0.8em}}}
+\newcommand*\tikziso{\mathchoice{\@tikziso{1.0}{1}{\displaystyle}{0pt}}%
+  {\@tikziso{1.0}{1}{\textstyle}{0pt}}%
+  {\@tikziso{0.8}{0.9}{\scriptstyle}{0pt}}%
+  {\@tikziso{0.67}{0.8}{\scriptscriptstyle}{0.15ex}}}
+\makeatother
+
+\renewcommand*{\to}[1][]{\ifthenelse{\isempty{#1}}{\tikzto}{\xrightarrowb{#1}}}
+\newcommand*{\into}[1][]{\ifthenelse{\isempty{#1}}{\tikzinto}{\xrightarrowb[into]{#1}}}
+\newcommand*{\onto}[1][]{\ifthenelse{\isempty{#1}}{\tikzonto}{\xrightarrowb[onto]{#1}}}
+\newcommand*{\clim}{\tikzclim}
+\newcommand*{\opim}{\tikzopim}
+
+\newcommand*{\iso}{\tikziso}
+
+\renewcommand*{\mapsto}{\tikzmapsto}
+
+\newcommand*{\ca}[1]{\ensuremath{\mathscr{#1}}\xspace}
+\renewcommand*{\cal}[1]{\ensuremath{\mathcal{#1}}\xspace}
+\newcommand*{\f}[1]{\ensuremath{\mathfrak{#1}}\xspace}
+
+\newcommand{\cl}[2][0]{{}\mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand*{\Int}[1]{\ensuremath{#1^\circ}\xspace}
+
+\newcommand*{\infcat}[1][1]{\((\infty,#1)\)–category\xspace}
+\newcommand*{\linfcat}{\(\infty\)–category\xspace}
+\newcommand*{\infcats}[1][1]{\((\infty,#1)\)–categories\xspace}
+\newcommand*{\linfcats}{\(\infty\)–categories\xspace}
+\newcommand*{\Cat}{\textnormal{\textsf{Cat}}}
+\newcommand*{\spc}{\textnormal{\textbf{Spc}}}
+\newcommand*{\ICat}{\textnormal{\textbf{Cat}}}
+\newcommand*{\infpshv}{\operatorname{\textnormal{\textbf{PShv}}}}
+\newcommand*{\infshv}{\operatorname{\textnormal{\textbf{Sh}}}}
+\newcommand*{\hypshv}{\operatorname{\widehat{\textnormal{\textbf{Sh}}}}}
+\newcommand*{\hyp}[1][]{\operatorname{\ca H}^{#1}\mkern-2mu}
+\newcommand*{\phyp}[1][]{\operatorname{\ca H}^{#1}_{\bullet}\mkern-2mu}
+\newcommand*{\sh}{\operatorname{\ca{SH}}}
+\newcommand*{\shv}{\operatorname{\textnormal{\textsf{Shv}}}}
+\newcommand*{\pshv}{\operatorname{\textnormal{\textsf{PShv}}}}
+\newcommand*{\Aff}{\operatorname{\textnormal{\textsf{Aff}}}}
+\newcommand*{\Ring}{\operatorname{\textnormal{\textsf{Ring}}}}
+\newcommand*{\Alg}{\operatorname{\textnormal{\textsf{Alg}}}}
+\newcommand*{\Disc}{\operatorname{\textnormal{\textsf{Disc}}}}
+\newcommand*{\mfd}{\operatorname{\textnormal{\textsf{Mfd}}}}
+\newcommand*{\sm}[1][k]{\mathop{\textnormal{\textsf{Sm}}/#1}}
+\newcommand*{\Simp}{\mathbf{\Delta}}
+\newcommand*{\sset}{\operatorname{\textnormal{\textsf{sSet}}}}
+\newcommand*{\ssetQ}{\operatorname{\textnormal{\textsf{sSet}}_{\textnormal{\textsf{Q}}}}}
+\newcommand*{\ssetJ}{\operatorname{\textnormal{\textsf{sSet}}_{\textnormal{\textsf{J}}}}}
+\newcommand*{\Top}{\operatorname{\textnormal{\textsf{Top}}}}
+\newcommand*{\qcat}{\operatorname{\textnormal{\textsf{qCat}}_{2}}}
+\newcommand*{\Fin}{\operatorname{\textnormal{\textsf{Fin}}_{*}}}
+\newcommand*{\tang}[1]{\textnormal{T}\mkern-2mu_{#1}}
+\newcommand*{\dual}[1]{\textnormal{D}#1}
+\newcommand*{\sch}[1][k]{\mathop{\textnormal{\textsf{Sch}}/#1}}
+\newcommand*{\tors}[1][G]{\mathop{\textnormal{Tors}_{#1}}}
+\newcommand*{\Tors}[1][G]{\mathop{\textnormal{\textsf{Tors}}_{#1}}}
+
+\def\<#1>{\left\langle #1 \right\rangle}
+
+\newcommand{\dd}[1][]{%
+  \mathrm{d}%
+  \if\relax\detokenize{#1}\relax%
+  \else%
+    ^{#1}\mkern-1.5mu%
+  \fi%
+}
+
+\newcommand{\Diff}[1][]{%
+  \mathrm{D}%
+  \if\relax\detokenize{#1}\relax%
+  \else%
+  ^{#1}\m
+  kern-1.5mu%
+  \fi%
+}
+
+\newcommand{\ddd}[1][]{%
+  \mathop{}\!\dd[#1]%
+}
+
+\undef\AA
+\undef\SS
+\renewcommand*{\do}[1]{\expandafter\def\csname#1#1\endcsname{\ensuremath{\mathbb{#1}}\xspace}}
+\docsvlist{A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}
+
+\shortdate
+\def\parsedate#1/#2/#3\endparse{%
+  \date{\formatdate{#3}{#2}{#1}}
+}
+\newcommand{\setdate}[1]{%
+  \ifthenelse{\isempty{#1}}{}{\parsedate#1\endparse}
+}

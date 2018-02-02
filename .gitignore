@@ -1,15 +1,2 @@
-.do_built*
-build/preview/*
-!build/preview/preview.dtx
-!build/preview/preview.ins
-!build/preview/preview.sty.do
-htdocs
-nginx
-
-*.html
-posts/*.tex
-posts/*.pdf
-index.md
-lists/*.md
-lists/*/preview
-tex/
+_cache
+_site

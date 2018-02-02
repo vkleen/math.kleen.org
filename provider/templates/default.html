@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html$if(lang)$ lang="$lang$"$endif$>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>$if(title)$$title$$endif$</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="/css/default.css">
+  <link rel="stylesheet" href="/css/math.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  $if(rss)$<link rel="alternate" type="application/atom+xml" href="$rss$" title="Atom 1.0">$endif$
+</head>
+<body>
+<header>
+<div class="headerContent">
+  <h1 class="title"><a href="/" title="math.kleen.org">math.kleen.org</a>$if(title)$$if(indexPage)$$else$: $title$$endif$$endif$</h1>
+  <ul class="links">$if(repo)$<li><a href="$repo$">Code repository</a></li>$endif$$if(base)$<li><a href="$base$">Base file</a></li>$endif$</ul>
+</div>
+</header>
+<div class="content">
+<div class="indexTagList">
+<ul>
+  $for(tags)$
+  <li>
+    $body$
+  </li>
+  $endfor$
+</ul>
+</div>
+<div class="mainBody">
+$body$
+</div>
+</div>
+<footer>
+    <div class="footerContent">
+       $if(published)$<p class="info">Published $published$</p>$endif$
+       $if(tagList)$<ul class="tags">$tagList$</ul>$endif$
+    </div>
+</footer>
+</body>
+</html>
