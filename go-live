@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ssh amy -- rsync -av --progress --delete /sites/beta.math/ /sites/math/
