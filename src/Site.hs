@@ -59,12 +59,12 @@ texCompiler texStr = do
 postCompiler tags = do
     underlyingTags <- getUnderlying >>= getTags
     getResourceBody >>= saveSnapshot "content"
-    let ctx = mconcat [ listField "tags" defaultContext $ loadSnapshotBody "rendered-tags" "rendered-tags"
+    let ctx = mconcat [ listField "tags" defaultContext $ loadSnapshotBody "index.md" "rendered-tags"
                       , dateField "published" "%F"
                       , defaultContext
                       ]
         ctx' = tagsFieldWith getTags
-                             (\tag _ -> Just . H.li $ H.a ! A.href (toValue . toUrl $ "tags" </> tagTranslation tag <.> "html") $ toHtml tag)
+                             (\tag _ -> Just . H.li $ H.a ! A.href (toValue . toUrl $ "/tags" </> tagTranslation tag <.> "html") $ toHtml tag)
                              (mconcat . intersperse "\n")
                              "tagList"
                              tags
@@ -89,11 +89,6 @@ main = hakyllWith config $ do
 
   tags <- buildTags "posts/**" tagTranslation' >>= addTag "All Posts" "posts/**"
 
-  create ["rendered-tags"] $
-    compile $ do
-        mapM (\(k, _) -> renderTag k tags) (tagsMap tags) >>= makeItem >>= saveSnapshot "rendered-tags"
-        makeItem ("" :: String)
-
   match "posts/**" $ do
     route $ setExtension ".html"
     compile $ postCompiler tags
@@ -103,10 +98,10 @@ main = hakyllWith config $ do
     compile $ do
       let ctx = mconcat [ constField "title" tag
                         , constField "rss" $ "/rss" </> tagTranslation tag <.> "rss"
-                        , listField "tags" defaultContext $ loadSnapshotBody "rendered-tags" "rendered-tags"
+                        , listField "tags" defaultContext $ loadSnapshotBody "index.md" "rendered-tags"
                         , defaultContext
                         ]
-      renderTagPostList tag tags
+      renderTagAllPostList tag tags
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
 
@@ -126,7 +121,8 @@ main = hakyllWith config $ do
     route $ setExtension ".html"
     compile $ do
       posts <- recentFirst =<< loadAllSnapshots "posts/**" "pandoc-content"
-      let ctx = mconcat [ listField "tags" defaultContext $ loadSnapshotBody "rendered-tags" "rendered-tags"
+      mapM (\(k, _) -> renderTag k tags) (tagsMap tags) >>= makeItem >>= saveSnapshot "rendered-tags"
+      let ctx = mconcat [ listField "tags" defaultContext $ loadSnapshotBody "index.md" "rendered-tags"
                         , boolField "indexPage" (const True)
                         , constField "rss" "/rss/all-posts.rss"
                         , listField "posts" defaultContext $ pure $ take 3 posts
@@ -148,36 +144,49 @@ feedConfig tagName = FeedConfiguration { feedTitle = "math.kleen.org: " ++ tagNa
                                        , feedRoot = "http://math.kleen.org"
                                        }
 
+renderTagAllPostList :: String
+                  -> Tags
+                  -> Compiler (Item String)
+renderTagAllPostList = renderTagPostList' id
+
 renderTagPostList :: String
                   -> Tags
                   -> Compiler (Item String)
-renderTagPostList tag tags = do
+renderTagPostList = renderTagPostList' withEllipsis
+  where
+    withEllipsis xs
+      | length xs > max = Nothing : takeEnd (max - 1) xs
+      | otherwise = xs
+    takeEnd i = reverse . take i . reverse
+    max = 4
+
+renderTagPostList' :: ([Maybe (String,String)] -> [Maybe (String,String)])
+                   -> String
+                   -> Tags
+                   -> Compiler (Item String)
+renderTagPostList' transform tag tags = do
   ids' <- sortChronological ids
   titleRoutes <- fmap catMaybes $ forM ids' $ \id -> do
     route <- getRoute id
     title <- getMetadataField id "title"
     return $ (,) <$> title <*> route
-  makeItem $ renderHtml $ H.ul $ (mconcat . intersperse "\n") $ map generateLink $ withEllipsis Nothing $ map Just titleRoutes
+  makeItem $ renderHtml $ H.ul $ (mconcat . intersperse "\n") $ map generateLink $ transform $ map Just titleRoutes
 
   where
-    generateLink Nothing = toHtml ("…" :: String)
+    generateLink Nothing = H.li $ toHtml ("…" :: String)
     generateLink (Just (title,route)) = H.li $ H.a ! A.href (toValue . toUrl $ route) $ toHtml title
 
     ids = fromMaybe [] $ lookup tag $ tagsMap tags
 
-    withEllipsis ellipsisItem xs
-      | length xs > max = ellipsisItem : takeEnd (max - 1) xs
-      | otherwise = xs
-    takeEnd i = reverse . take i . reverse
-    max = 4
+
 renderTag :: String -- ^ Tag name
           -> Tags
           -> Compiler (Item String)
 renderTag tag tags = do
   let
     postCtx = mconcat [ constField "title" tag
-                      , constField "rss" ("rss" </> tagTranslation tag <.> "rss")
-                      , constField "url" ("tags" </> tagTranslation tag <.> "html")
+                      , constField "rss" ("/rss" </> tagTranslation tag <.> "rss")
+                      , constField "url" ("/tags" </> tagTranslation tag <.> "html")
                       , defaultContext
                       ]
   renderTagPostList tag tags
