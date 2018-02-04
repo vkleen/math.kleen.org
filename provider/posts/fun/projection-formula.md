@@ -22,5 +22,4 @@ corresponds to charge conservation in the wire and $\curl{E} = 0$ says
 that the system is in a steady state.
 
 I want to give a high-tech proof of this using some differential topology. If
-anyone knows or can come up with a more elementary proof, I would love to see
-it!
+anyone knows a more elementary proof, I would love to see it!
