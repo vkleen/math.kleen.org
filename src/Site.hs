@@ -332,5 +332,5 @@ toFilePath' = (providerDirectory config </>) . toFilePath
 
 config :: Configuration
 config = defaultConfiguration { providerDirectory = "provider"
-                              , deployCommand = "rsync -v --progress -ac --no-p --no-g --chmod=ugo=rX --delete-delay -m  _site/ amy:/sites/beta.math/"
+                              , deployCommand = "rsync -v --progress -rlpc --chmod=ugo=rX --delete-delay -m  _site/ amy:/sites/beta.math/"
                               }
