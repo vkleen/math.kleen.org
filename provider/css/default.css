@@ -62,11 +62,12 @@ footer ul.tags li:last-child:after { content: ""; }
 div.indexTagList {
     position: absolute;
     width: 20%;
+    margin-left: 0;
 }
 
 div.indexTagList ul {
     list-style:none outside none;
-    margin-left:0;
+    margin-left: 1em;
     padding-left:0;
 }
 
@@ -77,7 +78,7 @@ div.indexTagList li {
 
 div.indexTagList ul ul {
     list-style:disc outside none;
-    padding-left:3em;
+    padding-left:1em;
 }
 
 div.content {
@@ -85,11 +86,11 @@ div.content {
 }
 
 div.mainBody {
-    margin-right:auto;
+    margin-right: 0;
     margin-left: 20%;
     padding-right:1em;
     padding-left:1em;
-    width: 60%;
+    width: 70%;
     max-width:70em;
     text-align:justify;
 }
@@ -98,7 +99,7 @@ div div {
     margin-left: 2em;
 }
 
-@media screen and (max-width: 50em) {
+@media screen and (max-width: 70em) {
     div.indexTagList {
         position: static;
         width: initial;
@@ -209,3 +210,4 @@ div.footnotes hr {
 a.footnoteRef {
     text-decoration:none;
 }
+
