@@ -14,9 +14,10 @@ header h1, header h2 {
     margin:0;
 }
 
+header h1.title {
+    font: bold 2em/1.1em monospace;
+}
 header h2.subtitle {
-    font-size:1.1em;
-    font-weight:normal;
     font-style:italic;
 }
 
@@ -94,7 +95,24 @@ div.mainBody {
 }
 
 @media screen and (max-width: 50em) {
-    div.indexTagList { position: static; }
+    div.indexTagList {
+        position: static;
+        width: initial;
+        max-width: initial;
+        margin: auto;
+    }
+
+    div.mainBody {
+        width: initial;
+        max-width: initial;
+        margin: auto;
+    }
+
+    header div.headerContent, footer div.footerContent {
+        margin: auto;
+        width: initial;
+        max-width: initial;
+    }
 }
 
 a {
