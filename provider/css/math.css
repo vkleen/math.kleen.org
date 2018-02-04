@@ -18,10 +18,6 @@ div.theorem + div.proof {
     margin-top: -.5em;
 }
 
-div div {
-    margin-left: 2em;
-}
-
 div.exercise > p:first-child:before {
     content: "Exercise. ";
     font-weight: bold;

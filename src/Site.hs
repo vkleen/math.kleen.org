@@ -125,7 +125,7 @@ main = hakyllWith config $ do
       let ctx = mconcat [ listField "tags" defaultContext $ loadSnapshotBody "index.md" "rendered-tags"
                         , boolField "indexPage" (const True)
                         , constField "rss" "/rss/all-posts.rss"
-                        , listField "posts" defaultContext $ pure $ take 3 posts
+                        , listField "posts" defaultContext $ pure $ map (demoteHeaders <$>) $ take 3 posts
                         , defaultContext
                         ]
       wopt <- pandocWriterOptions

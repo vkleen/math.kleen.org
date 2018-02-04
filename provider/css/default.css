@@ -94,6 +94,10 @@ div.mainBody {
     text-align:justify;
 }
 
+div div {
+    margin-left: 2em;
+}
+
 @media screen and (max-width: 50em) {
     div.indexTagList {
         position: static;
@@ -113,15 +117,20 @@ div.mainBody {
         width: initial;
         max-width: initial;
     }
+
+    div div {
+        margin: auto;
+    }
 }
 
 a {
     color:inherit;
 }
 
-div.preview h2 {
+div.preview h2, div.preview h3, div.preview h4, div.preview h5, div.preview h6 {
     font-size: 1.1em;
     font-weight: bold;
+    text-align: left;
 }
 
 a.post-preview-title {
