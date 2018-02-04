@@ -220,7 +220,7 @@ getTex pattern makeId = do
       getTex' :: FilePath -> Rules [String]
       getTex' path = preprocess . fmap concat $ (\x -> [query extractTex, query extractTex'] <*> pure x) `liftM` readPandoc' path
       extractTex :: Inline -> [String]
-      extractTex (Math _ str) = [wrapMath str]
+      extractTex (Math mathType str) = [wrapMath mathType str]
       extractTex (RawInline "latex" str) = [str]
       extractTex _ = []
       extractTex' :: Block -> [String]
@@ -230,9 +230,6 @@ getTex pattern makeId = do
       mergeGroups = map mergeGroups' . filter (not . null)
       mergeGroups' :: [([Identifier], String)] -> ([Identifier], String)
       mergeGroups' xs@((_, str):_) = (concatMap fst xs, str)
-
-wrapMath :: String -> String
-wrapMath str = "\\(" ++ str ++ "\\)"
 
 readPandoc' :: FilePath -> IO Pandoc
 readPandoc' path = CBS.readFile path >>= either fail return . result' . T.decodeUtf8
@@ -291,12 +288,15 @@ envTransform = pure . walk replaceProof . walk envTransform'
         findQED' (p@(Para [Str "QED."]) : ps) s = (s, ps)
         findQED' (p : ps) s = findQED' ps (p : s)
 
+wrapMath :: MathType -> String -> String
+wrapMath InlineMath str = "\\(" ++ str ++ "\\)"
+wrapMath DisplayMath str = "\\[" ++ str ++ "\\]"
 
 texTransform :: Pandoc -> Compiler Pandoc
 texTransform = walkM texTransformInline <=< walkM texTransformBlock
   where
     texTransformInline :: Inline -> Compiler Inline
-    texTransformInline (Math mathType tex) = (\html -> Span ("", [classOf mathType], []) [RawInline "html" html]) <$> texTransform' wrapMath tex
+    texTransformInline (Math mathType tex) = (\html -> Span ("", [classOf mathType], []) [RawInline "html" html]) <$> texTransform' (wrapMath mathType) tex
     texTransformInline (RawInline "latex" tex) = (\html -> Span ("", [], []) [RawInline "html" html]) <$> texTransform' id tex
     texTransformInline x = return x
     texTransformBlock :: Block -> Compiler Block
