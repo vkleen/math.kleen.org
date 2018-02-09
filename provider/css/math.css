@@ -2,11 +2,15 @@ span.inline-math {
     display:inline;
 }
 
-span.display-math {
+span.display-math, div.display-math {
     display:block;
     text-align:center;
     margin-top:0.2em;
     margin-bottom:0.2em;
+}
+
+div.display-math + p {
+    margin-top: 0;
 }
 
 div.theorem, div.lemma, div.definition, div.corollary, div.proof, div.proposition {

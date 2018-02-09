@@ -300,7 +300,7 @@ texTransform = walkM texTransformInline <=< walkM texTransformBlock
     texTransformInline (RawInline "latex" tex) = (\html -> Span ("", [], []) [RawInline "html" html]) <$> texTransform' id tex
     texTransformInline x = return x
     texTransformBlock :: Block -> Compiler Block
-    texTransformBlock (RawBlock "latex" tex) = (\html -> Div ("", [], []) [RawBlock "html" html]) <$> texTransform' id tex
+    texTransformBlock (RawBlock "latex" tex) = (\html -> Div ("", ["display-math"], []) [RawBlock "html" html]) <$> texTransform' id tex
     texTransformBlock x = return x
     texTransform' :: (String -> String) -> String -> Compiler String
     texTransform' texT tex = do

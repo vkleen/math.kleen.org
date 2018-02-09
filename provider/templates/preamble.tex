@@ -100,6 +100,8 @@
 
 \newcommand*{\triv}{\textnormal{triv}}
 
+\newcommand*{\dR}{\textnormal{dR}}
+
 \newcommand*{\normal}{\lhd}
 \newcommand*{\isom}{\cong}
 \newcommand*{\homot}{\sim}
@@ -294,6 +296,8 @@
 \newcommand*{\tors}[1][G]{\mathop{\textnormal{Tors}_{#1}}}
 \newcommand*{\Tors}[1][G]{\mathop{\textnormal{\textsf{Tors}}_{#1}}}
 
+\newcommand*{\hodge}{\mathord{\star}}
+
 \def\<#1>{\left\langle #1 \right\rangle}
 
 \newcommand{\dd}[1][]{%
@@ -315,6 +319,13 @@
 
 \newcommand{\ddd}[1][]{%
   \mathop{}\!\dd[#1]%
+}
+
+\newcommand{\dvol}[1][]{%
+    \dd\textnormal{vol}%
+    \if\relax\detokenize{#1}\relax%
+      _{#1}%
+    \fi%
 }
 
 \undef\AA
