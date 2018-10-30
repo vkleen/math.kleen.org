@@ -30,10 +30,10 @@ P\times^G X$ on generalized elements. Namely, given a generalized element
 $(p,x)\colon T\to P\times X$, I will write $[p,x]$ for the composition $T\to
 P\times X\to P\times^G X$. Because $P\times X\onto P\times^G X$ is an
 epimorphism, to check some relation between generalized elements downstairs it
-will be enough to check it on generalized elements of the form
-$[p,x]$. Furthermore, if $(p,x)$ actually comes from a generalized element
-$(g,p,x)\colon T\to (G,P,X)$ via projection, then by the coequalizer property we
-find $[p,x] = [p g^{-1}, g x]$.
+will be enough to check it on generalized elements of the form $[p,x]$.
+Furthermore, if $(p,x)$ actually comes from a generalized element $(g,p,x)\colon
+T\to G\times P\times X$ via projection, then by the coequalizer property we find
+$[p,x] = [p g^{-1}, g x]$.
 
 The process of twisting has some exactness properties:
 
