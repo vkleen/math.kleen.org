@@ -6,7 +6,7 @@ with pkgs.lib;
 let
   sourceFilter = path: type: (hasPrefix (toString ./src ) path || (baseNameOf path == "blog.cabal"));
 in rec {
-  haskellPackages = pkgs.haskell.packages.ghc822;
+  haskellPackages = pkgs.haskell.packages.ghc843;
   math-kleen-org = pkgs.stdenv.lib.overrideDerivation (haskellPackages.callPackage ./blog.nix {})
     (attrs :
       { src = builtins.filterSource sourceFilter ./.;

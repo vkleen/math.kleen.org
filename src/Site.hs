@@ -134,6 +134,10 @@ main = hakyllWith config $ do
         >>= loadAndApplyTemplate "templates/default.html" ctx
         >>= relativizeUrls
 
+  match "*.pdf" $ do
+    route idRoute
+    compile copyFileCompiler
+
 deriving instance Eq (Item String)
 
 feedConfig :: String -> FeedConfiguration

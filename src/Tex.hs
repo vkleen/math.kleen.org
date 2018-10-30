@@ -20,12 +20,13 @@ import Control.DeepSeq (($!!))
 
 import Text.Regex.TDFA ((=~))
 
+instance Semigroup ExitCode where
+  (ExitFailure a) <> _ = ExitFailure a
+  ExitSuccess <> x@(ExitFailure _) = x
+  ExitSuccess <> ExitSuccess = ExitSuccess
+
 instance Monoid ExitCode where
   mempty = ExitSuccess
-  (ExitFailure a) `mappend` _ = ExitFailure a
-  ExitSuccess `mappend` x@(ExitFailure _) = x
-  ExitSuccess `mappend` ExitSuccess = ExitSuccess
-  
 
 compileTex :: String -> IO (String, String)
 compileTex = withSystemTempDirectory "tex" . compileTex'

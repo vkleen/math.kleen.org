@@ -15,5 +15,5 @@ mkDerivation {
     process process-extras regex-tdfa temporary
   ];
   homepage = "http://math.kleen.org";
-  license = stdenv.lib.licenses.unfree;
+  license = stdenv.lib.licenses.bsd3;
 }
